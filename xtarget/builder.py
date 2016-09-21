@@ -254,6 +254,10 @@ class XTargetBuilder(object):
                 local_env["SCM_STOREDIR"] = scm_storedir
                 local_env["ARCH"] = arch
                 local_env["CONFIG_PROTECT"] = "-*"
+                # softnautic 2016-09-21: inject arch in USE environment variable to use it in target ebuild DEPEND
+                local_env["USE"] = local_env.get('USE','') + ' ' + arch
+                # /softnautic
+                
                 # create distfiles if needed
                 if distfiles_dir is not None:
                         if not exists(distfiles_dir):
